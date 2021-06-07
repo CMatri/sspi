@@ -135,7 +135,7 @@ func (c *ClientContext) Sizes() (uint32, uint32, uint32, uint32, error) {
 // negotiation. Once authentication is completed the context can be
 // used to impersonate client.
 type ServerContext struct {
-	Sctxt *sspi.Context
+	sctxt *sspi.Context
 }
 
 // NewServerContext creates new server context. It uses server
@@ -160,6 +160,10 @@ func NewServerContext(cred *sspi.Credentials, negotiate []byte) (*ServerContext,
 	}
 	challenge = challenge[:n]
 	return &ServerContext{sctxt: c}, challenge, nil
+}
+
+func (c *ServerContext) Context() *sspi.Context {
+	return c.sctxt
 }
 
 // Release free up resources associated with server context c.
