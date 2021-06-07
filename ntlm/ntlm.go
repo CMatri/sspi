@@ -135,7 +135,7 @@ func (c *ClientContext) Sizes() (uint32, uint32, uint32, uint32, error) {
 // negotiation. Once authentication is completed the context can be
 // used to impersonate client.
 type ServerContext struct {
-	sctxt *sspi.Context
+	Sctxt *sspi.Context
 }
 
 // NewServerContext creates new server context. It uses server
